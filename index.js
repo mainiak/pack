@@ -16,6 +16,9 @@ function run(fileName) {
   let savedSize = origSize - data.length
   let percent = (savedSize / (origSize/100))
   console.log(fileName + ': ' + origSize + ' -> ' + data.length + ' # ' + percent + '%')
+
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management
+  data = null
 }
 
 // fs.realpathSync
