@@ -19,12 +19,25 @@ function run(fileName) {
 
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management
   data = null
+
+  return {
+    origSize,
+    savedSize
+  }
 }
+
+let origSize = 0
+let savedSize = 0
 
 // fs.realpathSync
 for (let i=2; i<process.argv.length; i++) {
   let fileName = process.argv[i]
   if (fs.existsSync(fileName)) {
-    run(fileName)
+    let sizes = run(fileName)
+    origSize += sizes.origSize
+    savedSize += sizes.savedSize
   }
 }
+
+let percent = (savedSize / (origSize/100))
+console.log('# Saved total ' + percent + '%')
